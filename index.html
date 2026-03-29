@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ketoand Startpage v3 - Final</title>
+    <title>Ketoand Startpage v3.1 - Fixed Final</title>
     <style>
-        /* --- ESTILO GENERAL (Fondo y Diseño Base) --- */
+        /* --- ESTILO GENERAL --- */
         body {
-            /* Usando tu fondo original */
             background-image: url('https://i.imgur.com/MkEjw6u.gif');
             background-size: cover;
             background-position: center;
@@ -21,11 +20,9 @@
             align-items: center;
             justify-content: space-between;
             color: white;
-            /* El clic activa la música si el autoplay falla */
             cursor: pointer;
         }
 
-        /* Superposición oscura para que el texto sea legible */
         body::before {
             content: "";
             position: absolute;
@@ -46,7 +43,7 @@
         .left { left: 5px; top: 5%; bottom: 5%; width: 2px; }
         .right { right: 5px; top: 5%; bottom: 5%; width: 2px; }
 
-        /* --- PANEL IZQUIERDO (Botones y Rayones) --- */
+        /* --- PANEL IZQUIERDO --- */
         .left-side {
             display: flex;
             flex-direction: column;
@@ -55,12 +52,12 @@
             margin-left: 80px;
         }
 
-        /* Cuadro superior que rayaste (Imagen amigable) */
+        /* Cuadro superior que rayaste (Imagen amigable - Ahora con Tortuga) - MÁS GRANDE */
         .friendly-image-box {
-            width: 250px;
-            height: 150px;
-            background-image: url('https://i.imgur.com/qmSLTkk.png');
-            background-size: contain;
+            width: 320px; /* Aumentado */
+            height: 200px; /* Aumentado */
+            background-image: url('https://i.imgur.com/Q9QWfmk.png');
+            background-size: cover; /* Cambiado para llenar el cuadro */
             background-repeat: no-repeat;
             background-position: center;
             border: 2px solid white;
@@ -87,7 +84,7 @@
             font-size: 0.9rem;
         }
 
-        /* Efectos de color al pasar el mouse (hover) */
+        /* Efectos de color al pasar el mouse */
         .tiktok:hover { border-color: #ff0050; box-shadow: 0 0 20px #ff0050; color: #ff0050; }
         .roblox:hover { border-color: #00A2FF; box-shadow: 0 0 20px #00A2FF; color: #00A2FF; }
         .steam:hover { border-color: #66c0f4; box-shadow: 0 0 20px #66c0f4; color: #66c0f4; }
@@ -96,28 +93,26 @@
         .reddit:hover { border-color: #FF4500; box-shadow: 0 0 20px #FF4500; color: #FF4500; }
         .c-ai:hover { border-color: #a1a1a1; box-shadow: 0 0 20px #ffffff; color: #ffffff; }
 
-        /* Cuadro inferior que rayaste (Mickey triste con borde brillante) */
+        /* Cuadro inferior (Mickey triste con borde brillante rápido B/N) - MÁS GRANDE */
         .sad-mickey-box {
-            width: 250px;
-            height: 150px;
+            width: 320px; /* Aumentado */
+            height: 200px; /* Aumentado */
             background-image: url('https://i.imgur.com/wgiRIai.png');
-            background-size: contain;
+            background-size: contain; /* Cambiado para que quepa todo el Mickey */
             background-repeat: no-repeat;
             background-position: center;
             border: 2px solid;
             margin-top: 20px;
-            /* Animación de brillo blanco y negro */
-            animation: borderGlow 0.5s linear infinite;
+            animation: borderGlow 0.3s linear infinite;
         }
 
-        /* Animación de borde brillante rápido B/N */
         @keyframes borderGlow {
             0% { border-color: #000; box-shadow: 0 0 10px #000; }
             50% { border-color: #fff; box-shadow: 0 0 20px #fff; }
             100% { border-color: #000; box-shadow: 0 0 10px #000; }
         }
 
-        /* --- PANEL DERECHO (Info e Imágenes) --- */
+        /* --- PANEL DERECHO --- */
         .right-container {
             z-index: 1;
             margin-right: 50px;
@@ -126,23 +121,23 @@
             align-items: flex-end;
         }
 
-        /* Contenedor de las dos imágenes de arriba a la derecha */
         .top-right-images {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
         }
 
-        /* Cuadro que rayaste al lado del círculo (Wojak asustado png) */
-        . wojak-box {
-            width: 110px;
-            height: 110px;
-            background-image: url('https://i.imgur.com/9O2byVE.png');
-            background-size: contain;
+        /* Cuadro cuadrado (GIF Wojak fumando) - MÁS GRANDE */
+        .wojak-box {
+            width: 130px; /* Aumentado */
+            height: 130px; /* Aumentado */
+            background-image: url('https://i.imgur.com/C0kLy3X.gif');
+            background-size: cover; /* Cambiado para llenar el cuadro */
             background-repeat: no-repeat;
             background-position: center;
             margin-right: 20px;
-            /* Sin borde como me pediste */
+            border: 2px solid white;
+            box-shadow: 0 0 10px white;
         }
 
         .circular-gif {
@@ -155,19 +150,15 @@
             box-shadow: 0 0 15px white;
         }
 
-        /* Panel de información con fondo transparente */
+        /* Panel de información (Texto limpio) */
         .info-panel {
-            background-image: url('https://i.imgur.com/Q9QWfmk.png');
-            background-color: rgba(0, 0, 0, 0.9); /* Base oscura por si la imagen tarda */
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: overlay; /* Combina la imagen con el color base */
+            background-color: rgba(0, 0, 0, 0.9);
             border: 2px solid #ffffff;
             padding: 35px;
             width: 480px;
             height: 75vh;
             box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
             overflow-y: auto;
             position: relative;
         }
@@ -175,12 +166,10 @@
         .text-block {
             font-size: 0.95rem;
             line-height: 1.8;
-            position: relative;
-            z-index: 2; /* Texto por encima de la imagen de fondo */
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.7); /* Sombra para legibilidad */
+            color: #fff;
         }
 
-        h2 { text-align:center; letter-spacing:4px; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); }
+        h2 { text-align:center; letter-spacing:4px; }
         hr { border: 0; border-top: 1px solid white; opacity: 0.5; margin: 20px 0; }
         .footer-text { text-align: center; opacity: 0.5; font-size: 0.7rem; }
     </style>
@@ -207,39 +196,3 @@
             <a href="https://discord.gg/dRsakfqN" class="btn discord">DISCORD</a>
             <a href="https://t.me/Ketoand" class="btn telegram">TELEGRAM</a>
             <a href="TU_LINK_DE_REDDIT_AQUI" class="btn reddit">REDDIT</a>
-            <a href="https://character.ai/profile/Chud_Critico" class="btn c-ai">CHARACTER.AI</a>
-        </div>
-
-        <div class="sad-mickey-box"></div>
-    </div>
-
-    <div class="right-container">
-        <div class="top-right-images">
-            <div class="wojak-box"></div>
-            <div class="circular-gif"></div>
-        </div>
-
-        <div class="info-panel">
-            <h2>INFO_PERFIL :: KETO</h2>
-            <hr>
-            <div class="text-block">
-                Hola mi nombre es Christian de 14 años, Vivo en Venezuela estado Cumaná , me encanta jugar videojuegos, leer, escribir, dibujar, programar, editar algunos videos cuando me da la gana XD, la verdad no soy de esos que comparten fotos de su rostro asi no mas porque la verdad para conocerte tendria que llevarme muy bien de confianza, si quieres conocerme pues aqui estan algunas de mis redes.
-            </div>
-            <hr>
-            <p class="footer-text">ONLINE // v1.2</p>
-        </div>
-    </div>
-
-    <script>
-        // Función para reproducir la música al primer clic
-        function startMusic() {
-            var audio = document.getElementById("bg-music");
-            audio.play().catch(function(error) {
-                console.log("Esperando interacción para sonar...");
-            });
-            // Una vez que suena, quitamos el evento de clic
-            document.body.onclick = null;
-        }
-    </script>
-</body>
-</html>
