@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keto Startpage v2</title>
     <style>
-        /* --- ESTILO GENERAL (Limpieza y Fondo) --- */
+        /* --- ESTILO GENERAL --- */
         body {
-            /* FONDO DEL GATO (Link directo Imgur) */
             background-image: url('https://i.imgur.com/MkEjw6u.gif');
             background-size: cover;
             background-position: center;
@@ -18,12 +17,10 @@
             overflow: hidden;
             height: 100vh;
             display: flex;
-            align-items: center; /* Centrado vertical de la página */
-            justify-content: flex-end; /* TODO Pegado a la DERECHA */
-            padding-right: 50px; /* Margen para que el cuadro no esté *tan* pegado */
+            align-items: center;
+            justify-content: space-between; /* Separa paneles a los extremos */
         }
 
-        /* Capa oscura general para contraste (menos agresiva) */
         body::before {
             content: "";
             position: absolute;
@@ -32,19 +29,13 @@
             z-index: 0;
         }
 
-        /* --- CONTENEDOR PRINCIPAL --- */
-        .wrapper {
+        /* --- CONTENEDOR DE BOTONES (IZQUIERDA) --- */
+        .buttons-panel {
             position: relative;
             z-index: 1;
-            display: flex;
-            align-items: center;
-            gap: 40px; /* Espacio entre botones y info */
-        }
-
-        /* --- BOTONES (Alineados a la izquierda del wrapper) --- */
-        .buttons-panel {
             text-align: center;
-            width: 300px; /* Ancho fijo para los botones */
+            width: 300px;
+            margin-left: 50px; /* Empuja los botones a la izquierda */
         }
 
         h1 {
@@ -52,71 +43,69 @@
             letter-spacing: 5px;
             text-transform: uppercase;
             margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-            margin-left: -50px; /* Corrección de alineación del título */
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
         }
 
-        /* Botones Minimalistas Flotantes */
         .btn {
             display: block;
-            background: rgba(0, 0, 0, 0.6); /* Transparente oscuro */
+            background: rgba(0, 0, 0, 0.7);
             border: 2px solid #ffffff;
             color: white;
             padding: 15px;
-            margin: 20px 0; /* Espacio entre botones */
+            margin: 15px 0;
             text-decoration: none;
             font-weight: bold;
             text-transform: uppercase;
-            transition: 0.3s ease-in-out;
+            transition: 0.3s;
             backdrop-filter: blur(5px);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-            
-            /* Animación de flotar */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
             animation: float 3s ease-in-out infinite;
         }
-
-        /* Tiempos de animación diferentes */
-        .btn:nth-child(2) { animation-delay: 0.2s; }
-        .btn:nth-child(3) { animation-delay: 0.4s; }
-        .btn:nth-child(4) { animation-delay: 0.6s; }
-        .btn:nth-child(5) { animation-delay: 0.8s; }
-        .btn:nth-child(6) { animation-delay: 1s; }
 
         .btn:hover {
             background: white;
             color: black;
-            transform: scaleX(1.1); /* Efecto stretched */
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 30px white;
+            transform: scaleX(1.05);
         }
 
-        /* --- CUADRO GRANDE DE INFO (Pegado a la Derecha) --- */
-        .info-panel {
-            background-color: #000; /* Fondo Negro Sólido */
-            border: 2px solid #ffffff; /* Borde Blanco */
-            padding: 30px;
-            width: 450px; /* Ancho fijo */
-            height: 70vh; /* Alto fijo */
-            box-sizing: border-box;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); /* Bordes Iluminados */
-            
+        /* --- CUADRO DE INFO (DERECHA PEERFECTA) --- */
+        .right-container {
+            position: relative;
+            z-index: 1;
+            margin-right: 0; /* Pegado al borde */
             display: flex;
             flex-direction: column;
-            overflow-y: auto; /* Barra de scroll si el texto es muy largo */
+            align-items: flex-end; /* Alinea el círculo con el cuadro */
         }
 
-        /* --- EL CÍRCULO GIF (FUERA Y ARRIBA) --- */
+        .info-panel {
+            background-color: #000;
+            border: 2px solid #ffffff;
+            padding: 30px;
+            width: 450px;
+            height: 75vh;
+            box-sizing: border-box;
+            /* EFECTO BRILLANTE CON BLUR */
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        /* --- EL CÍRCULO GIF (ENCIMA DEL CUADRO) --- */
         .circular-gif-outer {
-            position: absolute;
-            top: 20px;
-            right: -20px; /* Sale hacia la derecha del cuadro */
             width: 100px;
             height: 100px;
             background-color: #000;
             border: 2px solid #ffffff;
-            border-radius: 50%; /* Circular */
+            border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-            z-index: 2;
+            box-shadow: 0 0 20px white;
+            margin-bottom: 15px; /* Espacio antes del cuadro */
+            margin-right: 20px; /* Ajuste visual para que no esté tan en la esquina */
         }
 
         .circular-gif-outer img {
@@ -125,104 +114,74 @@
             object-fit: cover;
         }
 
-        /* --- ESTILO DE TEXTO LIMPIO Y SEPARADO --- */
-        .info-panel h2 {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #fff;
-            margin-top: 0;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px #fff;
-            text-align: center;
-        }
-
-        .separator {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            margin: 15px 0;
-            width: 80%;
-            align-self: center;
-        }
-
-        /* Bloques de texto separados */
+        /* --- TEXTO BLANCO Y LIMPIO --- */
         .text-block {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             line-height: 1.6;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 15px; /* Espacio entre párrafos */
+            color: #ffffff; /* FORZADO A BLANCO */
+            margin-bottom: 20px;
             padding: 10px;
-            border-left: 2px solid transparent; /* Efecto limpio al hover */
-            transition: 0.2s;
+            transition: 0.3s;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
         }
 
         .text-block:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-left: 2px solid white;
+            background: rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 10px white;
         }
 
-        /* --- ANIMACIONES --- */
+        .info-panel h2 {
+            color: white;
+            text-align: center;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px white;
+        }
+
+        .separator {
+            border-bottom: 1px solid white;
+            margin: 15px 0;
+            opacity: 0.5;
+            box-shadow: 0 0 10px white;
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
 
-        /* Footer de Usuario */
         .telegram-user {
             position: absolute;
-            bottom: 15px;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 5;
-            color: rgba(255, 255, 255, 0.6);
+            color: white;
+            opacity: 0.6;
             font-size: 0.8rem;
-            letter-spacing: 2px;
         }
     </style>
 </head>
 <body>
 
-    <div class="circular-gif-outer">
-        <img src="https://i.imgur.com/ddeOAqB.gif" alt="gif">
+    <div class="buttons-panel">
+        <h1>KETO ALL ACCOUNTS</h1>
+        <a href="https://www.tiktok.com/@shakalaketo" class="btn">TIKTOK</a>
+        <a href="https://www.roblox.com/es/users/4693048699/profile" class="btn">ROBLOX</a>
+        <a href="https://steamcommunity.com/profiles/76561198790173153/" class="btn">STEAM</a>
+        <a href="https://discord.gg/dRsakfqN" class="btn">DISCORD</a>
+        <a href="https://t.me/Ketoand" class="btn">TELEGRAM</a>
     </div>
 
-    <div class="wrapper">
-        
-        <div class="buttons-panel">
-            <h1>KETO ALL ACCOUNTS LOLOLO</h1>
-            <a href="https://www.tiktok.com/@shakalaketo" class="btn">TIKTOK</a>
-            <a href="https://www.roblox.com/es/users/4693048699/profile" class="btn">ROBLOX</a>
-            <a href="https://steamcommunity.com/profiles/76561198790173153/" class="btn">STEAM</a>
-            <a href="https://discord.gg/dRsakfqN" class="btn">DISCORD</a>
-            <a href="https://t.me/Ketoand" class="btn">TELEGRAM</a>
+    <div class="right-container">
+        <div class="circular-gif-outer">
+            <img src="https://i.imgur.com/ddeOAqB.gif" alt="gif">
         </div>
 
         <div class="info-panel">
             <h2>INFO_PERFIL :: KETO</h2>
             <div class="separator"></div>
 
-            <div class="Si lees esto es porque programar esto  me tardo  2 horas">
-                Hola, soy Christian de Venezuela Cumaná. Me considero una persona amigable y un poco negativa a veces pero soy de esos que les encanta conocer gente
+            <div class="text-block">
+                Hola, soy Christian de Venezuela Cumaná. Me considero una persona amigable y un poco negativa a veces pero soy de esos que les encanta conocer gente.
             </div>
             
-            <div class="text-block">
-                Me encanta editar cuando puedo porque me encanta subir contenido para la gente
-            </div>
-
-            <div class="Soy mencho wei xdxdxd">
-                A veces juego videojuegos con mis amigos los  fines de semana, si quieres jugar conmigo pues solamente aprieta los botones que vez en  pantalla :P
-            </div>
-
-            <div class="text-block">
-                Si te interesa charlar conmigo pues hablame en discord
-            </div>
-            
-            <div class="separator"></div>
-            <div style="text-align: center; color: gray; font-size: 0.7rem; letter-spacing: 2px;">ONLINE // v1.2</div>
-        </div>
-
-    </div>
-
-    <p class="telegram-user">@Ketoand</p>
-
-</body>
-</html>
+            <div class="text
