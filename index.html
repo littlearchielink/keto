@@ -5,11 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Startpage</title>
     <style>
-        /* Estilo General */
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startpage Ketoand</title>
+    <style>
         body {
-            background-color: #0a0a0a; /* Fondo casi negro */
+            /* FONDO CON TU GIF */
+            background-image: url('dli7t54-818e2816-ba0c-4e45-88a8-06e37b9d4289.gif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #000;
+            
             color: white;
-            font-family: 'Courier New', Courier, monospace; /* Toque retro/PC */
+            font-family: 'Courier New', Courier, monospace;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,7 +31,15 @@
             overflow: hidden;
         }
 
-        /* Contenedor de botones */
+        /* Capa para oscurecer un poco el GIF y que resalten los botones */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+
         .container {
             text-align: center;
             width: 90%;
@@ -27,30 +47,58 @@
         }
 
         h1 {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            letter-spacing: 5px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
         }
 
-        /* Botones Estilo Minimalista */
+        /* BOTONES TRANSPARENTES CON BORDE ILUMINADO */
         .btn {
             display: block;
-            background: transparent;
-            border: 1px solid #444;
+            background: rgba(255, 255, 255, 0.05); /* Casi invisible */
+            border: 2px solid #ffffff;
             color: white;
             padding: 15px;
-            margin: 10px 0;
+            margin: 15px 0;
             text-decoration: none;
             font-weight: bold;
-            transition: 0.3s;
             text-transform: uppercase;
+            transition: 0.3s;
+            backdrop-filter: blur(3px); /* Efecto cristal */
+            
+            /* BRILLO BLANCO (GLOW) */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), inset 0 0 5px rgba(255, 255, 255, 0.2);
+            
+            /* ANIMACIÓN DE FLOTAR */
+            animation: float 3s ease-in-out infinite;
         }
 
-        /* Efecto al pasar el mouse */
+        /* Variamos el tiempo de la animación para que no suban todos iguales */
+        .btn:nth-child(2) { animation-delay: 0.2s; }
+        .btn:nth-child(3) { animation-delay: 0.4s; }
+        .btn:nth-child(4) { animation-delay: 0.6s; }
+        .btn:nth-child(5) { animation-delay: 0.8s; }
+
         .btn:hover {
-            background: white;
-            color: black;
-            letter-spacing: 5px; /* Efecto de estirado leve */
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+            transform: scaleX(1.1); /* Tu efecto stretched */
+            letter-spacing: 5px;
+        }
+
+        /* LÓGICA DE LA ANIMACIÓN (Subir y bajar) */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); } /* Sube 10 pixeles */
+        }
+
+        .telegram-user {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 3px;
+            animation: float 4s ease-in-out infinite; /* El usuario también flota */
         }
     </style>
 </head>
@@ -63,7 +111,9 @@
         <a href="#" class="btn">ROBLOX</a>
         <a href="#" class="btn">STEAM</a>
         <a href="#" class="btn">DISCORD</a>
-        <a href="#" class="btn">INSTAGRAM</a>
+        <a href="#" class="btn">TELEGRAM</a>
+
+        <p class="telegram-user">@Ketoand</p>
     </div>
 
 </body>
