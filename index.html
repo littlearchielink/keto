@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ketoand Startpage v2</title>
+    <title>Ketoand Startpage v3 - Final</title>
     <style>
-        /* --- ESTILO GENERAL --- */
+        /* --- ESTILO GENERAL (Fondo y Diseño Base) --- */
         body {
+            /* Usando tu fondo original */
             background-image: url('https://i.imgur.com/MkEjw6u.gif');
             background-size: cover;
             background-position: center;
@@ -19,8 +20,12 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            color: white;
+            /* El clic activa la música si el autoplay falla */
+            cursor: pointer;
         }
 
+        /* Superposición oscura para que el texto sea legible */
         body::before {
             content: "";
             position: absolute;
@@ -29,7 +34,7 @@
             z-index: 0;
         }
 
-        /* LÍNEAS BRILLANTES (LAS QUE PEDISTE) */
+        /* LÍNEAS BRILLANTES DE LOS BORDES */
         .glow-line {
             position: fixed;
             background: white;
@@ -41,13 +46,31 @@
         .left { left: 5px; top: 5%; bottom: 5%; width: 2px; }
         .right { right: 5px; top: 5%; bottom: 5%; width: 2px; }
 
-        /* PANEL DE BOTONES */
-        .buttons-panel {
-            position: relative;
+        /* --- PANEL IZQUIERDO (Botones y Rayones) --- */
+        .left-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             z-index: 1;
+            margin-left: 80px;
+        }
+
+        /* Cuadro superior que rayaste (Imagen amigable) */
+        .friendly-image-box {
+            width: 250px;
+            height: 150px;
+            background-image: url('https://i.imgur.com/qmSLTkk.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 2px solid white;
+            box-shadow: 0 0 10px white;
+            margin-bottom: 20px;
+        }
+
+        .buttons-panel {
             text-align: center;
             width: 300px;
-            margin-left: 80px;
         }
 
         .btn {
@@ -64,7 +87,7 @@
             font-size: 0.9rem;
         }
 
-        /* COLORES DE REDES AL PASAR EL MOUSE (HOVER) */
+        /* Efectos de color al pasar el mouse (hover) */
         .tiktok:hover { border-color: #ff0050; box-shadow: 0 0 20px #ff0050; color: #ff0050; }
         .roblox:hover { border-color: #00A2FF; box-shadow: 0 0 20px #00A2FF; color: #00A2FF; }
         .steam:hover { border-color: #66c0f4; box-shadow: 0 0 20px #66c0f4; color: #66c0f4; }
@@ -73,9 +96,29 @@
         .reddit:hover { border-color: #FF4500; box-shadow: 0 0 20px #FF4500; color: #FF4500; }
         .c-ai:hover { border-color: #a1a1a1; box-shadow: 0 0 20px #ffffff; color: #ffffff; }
 
-        /* PANEL DE INFO */
+        /* Cuadro inferior que rayaste (Mickey triste con borde brillante) */
+        .sad-mickey-box {
+            width: 250px;
+            height: 150px;
+            background-image: url('https://i.imgur.com/wgiRIai.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 2px solid;
+            margin-top: 20px;
+            /* Animación de brillo blanco y negro */
+            animation: borderGlow 0.5s linear infinite;
+        }
+
+        /* Animación de borde brillante rápido B/N */
+        @keyframes borderGlow {
+            0% { border-color: #000; box-shadow: 0 0 10px #000; }
+            50% { border-color: #fff; box-shadow: 0 0 20px #fff; }
+            100% { border-color: #000; box-shadow: 0 0 10px #000; }
+        }
+
+        /* --- PANEL DERECHO (Info e Imágenes) --- */
         .right-container {
-            position: relative;
             z-index: 1;
             margin-right: 50px;
             display: flex;
@@ -83,16 +126,23 @@
             align-items: flex-end;
         }
 
-        .info-panel {
-            background-color: rgba(0, 0, 0, 0.9);
-            border: 2px solid #ffffff;
-            padding: 35px;
-            width: 480px;
-            height: 75vh;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            overflow-y: auto;
-            color: white;
+        /* Contenedor de las dos imágenes de arriba a la derecha */
+        .top-right-images {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* Cuadro que rayaste al lado del círculo (Wojak asustado png) */
+        . wojak-box {
+            width: 110px;
+            height: 110px;
+            background-image: url('https://i.imgur.com/9O2byVE.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-right: 20px;
+            /* Sin borde como me pediste */
         }
 
         .circular-gif {
@@ -100,18 +150,42 @@
             height: 110px;
             border: 2px solid white;
             border-radius: 50%;
-            margin-bottom: 20px;
-            margin-right: 40px;
             background-image: url('https://i.imgur.com/ddeOAqB.gif');
             background-size: cover;
             box-shadow: 0 0 15px white;
         }
 
-        .text-block { font-size: 0.95rem; line-height: 1.8; margin-bottom: 20px; }
+        /* Panel de información con fondo transparente */
+        .info-panel {
+            background-image: url('https://i.imgur.com/Q9QWfmk.png');
+            background-color: rgba(0, 0, 0, 0.9); /* Base oscura por si la imagen tarda */
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay; /* Combina la imagen con el color base */
+            border: 2px solid #ffffff;
+            padding: 35px;
+            width: 480px;
+            height: 75vh;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .text-block {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2; /* Texto por encima de la imagen de fondo */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7); /* Sombra para legibilidad */
+        }
+
+        h2 { text-align:center; letter-spacing:4px; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); }
         hr { border: 0; border-top: 1px solid white; opacity: 0.5; margin: 20px 0; }
+        .footer-text { text-align: center; opacity: 0.5; font-size: 0.7rem; }
     </style>
 </head>
-<body>
+<body onclick="startMusic()">
 
     <div class="glow-line top"></div>
     <div class="glow-line bottom"></div>
@@ -122,46 +196,50 @@
         <source src="musica.mp3.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="buttons-panel">
-        <h1 style="font-size: 1rem; letter-spacing: 5px;">KETO ALL ACCOUNTS</h1>
-        <a href="https://www.tiktok.com/@shakalaketo" class="btn tiktok">TIKTOK</a>
-        <a href="https://www.roblox.com/es/users/4693048699/profile" class="btn roblox">ROBLOX</a>
-        <a href="https://steamcommunity.com/profiles/76561198790173153/" class="btn steam">STEAM</a>
-        <a href="https://discord.gg/dRsakfqN" class="btn discord">DISCORD</a>
-        <a href="https://t.me/Ketoand" class="btn telegram">TELEGRAM</a>
-        <a href="https://www.reddit.com/user/Obvious_Sherbet1019/" class="btn reddit">REDDIT</a>
-        <a href="https://character.ai/profile/Chud_Critico" class="btn c-ai">CHARACTER.AI</a>
+    <div class="left-side">
+        <div class="friendly-image-box"></div>
+
+        <div class="buttons-panel">
+            <h1 style="font-size: 1rem; letter-spacing: 5px;">KETO ALL ACCOUNTS</h1>
+            <a href="https://www.tiktok.com/@shakalaketo" class="btn tiktok">TIKTOK</a>
+            <a href="https://www.roblox.com/es/users/4693048699/profile" class="btn roblox">ROBLOX</a>
+            <a href="https://steamcommunity.com/profiles/76561198790173153/" class="btn steam">STEAM</a>
+            <a href="https://discord.gg/dRsakfqN" class="btn discord">DISCORD</a>
+            <a href="https://t.me/Ketoand" class="btn telegram">TELEGRAM</a>
+            <a href="TU_LINK_DE_REDDIT_AQUI" class="btn reddit">REDDIT</a>
+            <a href="https://character.ai/profile/Chud_Critico" class="btn c-ai">CHARACTER.AI</a>
+        </div>
+
+        <div class="sad-mickey-box"></div>
     </div>
 
     <div class="right-container">
-        <div class="circular-gif"></div>
+        <div class="top-right-images">
+            <div class="wojak-box"></div>
+            <div class="circular-gif"></div>
+        </div>
+
         <div class="info-panel">
-            <h2 style="text-align:center; letter-spacing:4px;">INFO_PERFIL :: KETO</h2>
+            <h2>INFO_PERFIL :: KETO</h2>
             <hr>
             <div class="text-block">
                 Hola mi nombre es Christian de 14 años, Vivo en Venezuela estado Cumaná , me encanta jugar videojuegos, leer, escribir, dibujar, programar, editar algunos videos cuando me da la gana XD, la verdad no soy de esos que comparten fotos de su rostro asi no mas porque la verdad para conocerte tendria que llevarme muy bien de confianza, si quieres conocerme pues aqui estan algunas de mis redes.
             </div>
             <hr>
-            <p style="text-align: center; opacity: 0.5; font-size: 0.7rem;">SISTEMA OPERATIVO v1.2 // ONLINE</p>
+            <p class="footer-text">ONLINE // v1.2</p>
         </div>
     </div>
 
     <script>
-        const audio = document.getElementById('bg-music');
-        
-        // El audio sonará en cuanto el navegador detecte que estás ahí
-        const startAudio = () => {
-            audio.play();
-            // Quitamos los eventos para que no se reinicie
-            window.removeEventListener('mousemove', startAudio);
-            window.removeEventListener('touchstart', startAudio);
-            window.removeEventListener('click', startAudio);
-        };
-
-        window.addEventListener('mousemove', startAudio);
-        window.addEventListener('touchstart', startAudio);
-        window.addEventListener('click', startAudio);
+        // Función para reproducir la música al primer clic
+        function startMusic() {
+            var audio = document.getElementById("bg-music");
+            audio.play().catch(function(error) {
+                console.log("Esperando interacción para sonar...");
+            });
+            // Una vez que suena, quitamos el evento de clic
+            document.body.onclick = null;
+        }
     </script>
-
 </body>
 </html>
