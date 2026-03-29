@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ketoand Startpage v3.1 - Fixed Final</title>
+    <title>Ketoand Startpage v3.1 - Final Version</title>
     <style>
         /* --- ESTILO GENERAL --- */
         body {
@@ -20,7 +20,9 @@
             align-items: center;
             justify-content: space-between;
             color: white;
-            cursor: pointer;
+            /* CURSOR PERSONALIZADO AQUÍ */
+            cursor: url('https://i.imgur.com/7CddGWN.png'), auto;
+            text-align: left;
         }
 
         body::before {
@@ -52,12 +54,11 @@
             margin-left: 80px;
         }
 
-        /* Cuadro superior (Imagen amigable - Ahora con Tortuga - MÁS GRANDE) */
         .friendly-image-box {
-            width: 320px; /* Aumentado */
-            height: 200px; /* Aumentado */
+            width: 320px;
+            height: 200px;
             background-image: url('https://i.imgur.com/ddeOAqB.gif');
-            background-size: cover; /* Cambiado para llenar el cuadro */
+            background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
             border: 2px solid white;
@@ -82,9 +83,10 @@
             text-transform: uppercase;
             transition: 0.3s;
             font-size: 0.9rem;
+            /* El cursor también se aplica a los botones */
+            cursor: url('https://i.imgur.com/7CddGWN.png'), pointer;
         }
 
-        /* Efectos de color al pasar el mouse */
         .tiktok:hover { border-color: #ff0050; box-shadow: 0 0 20px #ff0050; color: #ff0050; }
         .roblox:hover { border-color: #00A2FF; box-shadow: 0 0 20px #00A2FF; color: #00A2FF; }
         .steam:hover { border-color: #66c0f4; box-shadow: 0 0 20px #66c0f4; color: #66c0f4; }
@@ -93,7 +95,6 @@
         .reddit:hover { border-color: #FF4500; box-shadow: 0 0 20px #FF4500; color: #FF4500; }
         .c-ai:hover { border-color: #a1a1a1; box-shadow: 0 0 20px #ffffff; color: #ffffff; }
 
-        /* Cuadro inferior (Mickey triste con borde brillante rápido B/N) */
         .sad-mickey-box {
             width: 320px;
             height: 200px;
@@ -127,7 +128,6 @@
             margin-bottom: 20px;
         }
 
-        /* Cuadro cuadrado (GIF marciano) - QUITAR EL BORDE Y BAJAR UN POCO */
         .wojak-box {
             width: 130px;
             height: 130px;
@@ -136,9 +136,8 @@
             background-repeat: no-repeat;
             background-position: center;
             margin-right: 20px;
-            border: none; /* Borde quitado como me pediste */
-            box-shadow: none; /* Sombra quitada */
-            transform: translateY(10px); /* Bajado un poco */
+            border: none;
+            transform: translateY(10px);
         }
 
         .circular-gif {
@@ -151,7 +150,6 @@
             box-shadow: 0 0 15px white;
         }
 
-        /* Panel de información (Texto limpio) */
         .info-panel {
             background-color: rgba(0, 0, 0, 0.9);
             border: 2px solid #ffffff;
@@ -174,7 +172,6 @@
         hr { border: 0; border-top: 1px solid white; opacity: 0.5; margin: 20px 0; }
         .footer-text { text-align: center; opacity: 0.5; font-size: 0.7rem; }
 
-        /* NUEVO CUADRO INFERIOR (Tortuga con Brillo Lento B/N y Blur) */
         .glow-image-box {
             width: 320px;
             height: 200px;
@@ -188,9 +185,9 @@
         }
 
         @keyframes borderGlowSlow {
-            0% { border-color: #000; box-shadow: 0 0 10px #000, 0 0 2px 1px #000; }
-            50% { border-color: #fff; box-shadow: 0 0 20px #fff, 0 0 4px 2px #fff; }
-            100% { border-color: #000; box-shadow: 0 0 10px #000, 0 0 2px 1px #000; }
+            0% { border-color: #000; box-shadow: 0 0 10px #000; }
+            50% { border-color: #fff; box-shadow: 0 0 20px #fff; }
+            100% { border-color: #000; box-shadow: 0 0 10px #000; }
         }
     </style>
 </head>
@@ -215,7 +212,7 @@
             <a href="https://steamcommunity.com/profiles/76561198790173153/" class="btn steam">STEAM</a>
             <a href="https://discord.gg/dRsakfqN" class="btn discord">DISCORD</a>
             <a href="https://t.me/Ketoand" class="btn telegram">TELEGRAM</a>
-            <a href="TU_LINK_DE_REDDIT_AQUI" class="btn reddit">REDDIT</a>
+            <a href="#" class="btn reddit">REDDIT</a>
             <a href="https://character.ai/profile/Chud_Critico" class="btn c-ai">CHARACTER.AI</a>
         </div>
 
@@ -236,7 +233,6 @@
             </div>
             <hr>
             <p class="footer-text">Shitty Script By @Keto</p>
-            
             <div class="glow-image-box"></div>
         </div>
     </div>
@@ -245,7 +241,7 @@
         function startMusic() {
             var audio = document.getElementById("bg-music");
             audio.play().catch(function(error) {
-                console.log("Esperando interacción para sonar...");
+                console.log("Esperando clic para sonar...");
             });
             document.body.onclick = null;
         }
