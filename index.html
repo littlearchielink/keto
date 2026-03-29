@@ -3,9 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ketoand Startpage v3.1 - Final Version</title>
+    <title>Ketoand Startpage v4.0</title>
     <style>
-        /* --- ESTILO GENERAL --- */
+        /* --- ESTILO DE LA PANTALLA DE CARGA (LANDING) --- */
+        #welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 1.5s ease; /* Esto hace que se vuelva transparente poco a poco */
+            cursor: url('https://i.imgur.com/7CddGWN.png'), auto;
+        }
+
+        .welcome-text {
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            font-size: 2rem;
+            text-align: center;
+            margin: 20px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        .tortuga-btn {
+            width: 350px;
+            cursor: url('https://i.imgur.com/7CddGWN.png'), pointer;
+            transition: transform 0.3s;
+        }
+
+        .tortuga-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- ESTILO GENERAL DE LA PÁGINA --- */
         body {
             background-image: url('https://i.imgur.com/MkEjw6u.gif');
             background-size: cover;
@@ -20,9 +57,7 @@
             align-items: center;
             justify-content: space-between;
             color: white;
-            /* CURSOR PERSONALIZADO AQUÍ */
             cursor: url('https://i.imgur.com/7CddGWN.png'), auto;
-            text-align: left;
         }
 
         body::before {
@@ -33,7 +68,6 @@
             z-index: 0;
         }
 
-        /* LÍNEAS BRILLANTES DE LOS BORDES */
         .glow-line {
             position: fixed;
             background: white;
@@ -83,7 +117,6 @@
             text-transform: uppercase;
             transition: 0.3s;
             font-size: 0.9rem;
-            /* El cursor también se aplica a los botones */
             cursor: url('https://i.imgur.com/7CddGWN.png'), pointer;
         }
 
@@ -191,7 +224,13 @@
         }
     </style>
 </head>
-<body onclick="startMusic()">
+<body>
+
+    <div id="welcome-overlay">
+        <h1 class="welcome-text">Bienvenido pequeña criatura</h1>
+        <img src="https://i.imgur.com/qmSLTkk.png" class="tortuga-btn" onclick="revealSite()" alt="Cargar info">
+        <h2 class="welcome-text" style="font-size: 1.2rem;">Dale click a la tortuga para cargar la info de keto :P</h2>
+    </div>
 
     <div class="glow-line top"></div>
     <div class="glow-line bottom"></div>
@@ -204,7 +243,6 @@
 
     <div class="left-side">
         <div class="friendly-image-box"></div>
-
         <div class="buttons-panel">
             <h1 style="font-size: 1rem; letter-spacing: 5px;">KETO ALL ACCOUNTS</h1>
             <a href="https://www.tiktok.com/@shakalaketo" class="btn tiktok">TIKTOK</a>
@@ -215,7 +253,6 @@
             <a href="#" class="btn reddit">REDDIT</a>
             <a href="https://character.ai/profile/Chud_Critico" class="btn c-ai">CHARACTER.AI</a>
         </div>
-
         <div class="sad-mickey-box"></div>
     </div>
 
@@ -224,12 +261,11 @@
             <div class="wojak-box"></div>
             <div class="circular-gif"></div>
         </div>
-
         <div class="info-panel">
             <h2>LA INFO DE MIERDA DE KETO</h2>
             <hr>
             <div class="text-block">
-                Hola mi nombre es Christian de 14 años, Vivo en Venezuela estado Cumaná , me encanta jugar videojuegos, leer, escribir, dibujar, programar, editar algunos videos cuando me da la gana XD, la verdad no soy de esos que comparten fotos de su rostro asi no mas porque la verdad para conocerte tendria que llevarme muy bien de confianza, si quieres conocerme pues aqui estan algunas de mis redes.
+                Hola mi nombre es Christian de 14 años, Vivo en Venezuela estado Cumaná... (tu texto completo aquí)
             </div>
             <hr>
             <p class="footer-text">Shitty Script By @Keto</p>
@@ -238,12 +274,22 @@
     </div>
 
     <script>
-        function startMusic() {
+        function revealSite() {
+            var overlay = document.getElementById("welcome-overlay");
             var audio = document.getElementById("bg-music");
+            
+            // 1. Iniciar música
             audio.play().catch(function(error) {
-                console.log("Esperando clic para sonar...");
+                console.log("Música activada.");
             });
-            document.body.onclick = null;
+
+            // 2. Hacer el fondo transparente poco a poco
+            overlay.style.opacity = "0";
+            
+            // 3. Quitarlo del todo después de que termine la animación de 1.5s
+            setTimeout(function() {
+                overlay.style.display = "none";
+            }, 1500);
         }
     </script>
 </body>
