@@ -52,11 +52,11 @@
             margin-left: 80px;
         }
 
-        /* Cuadro superior que rayaste (Imagen amigable - Ahora con Tortuga) - MÁS GRANDE */
+        /* Cuadro superior (Imagen amigable - Ahora con Tortuga - MÁS GRANDE) */
         .friendly-image-box {
             width: 320px; /* Aumentado */
             height: 200px; /* Aumentado */
-            background-image: url('https://i.imgur.com/Q9QWfmk.png');
+            background-image: url('https://i.imgur.com/ddeOAqB.gif');
             background-size: cover; /* Cambiado para llenar el cuadro */
             background-repeat: no-repeat;
             background-position: center;
@@ -93,12 +93,12 @@
         .reddit:hover { border-color: #FF4500; box-shadow: 0 0 20px #FF4500; color: #FF4500; }
         .c-ai:hover { border-color: #a1a1a1; box-shadow: 0 0 20px #ffffff; color: #ffffff; }
 
-        /* Cuadro inferior (Mickey triste con borde brillante rápido B/N) - MÁS GRANDE */
+        /* Cuadro inferior (Mickey triste con borde brillante rápido B/N) */
         .sad-mickey-box {
-            width: 320px; /* Aumentado */
-            height: 200px; /* Aumentado */
+            width: 320px;
+            height: 200px;
             background-image: url('https://i.imgur.com/wgiRIai.png');
-            background-size: contain; /* Cambiado para que quepa todo el Mickey */
+            background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
             border: 2px solid;
@@ -127,17 +127,18 @@
             margin-bottom: 20px;
         }
 
-        /* Cuadro cuadrado (GIF Wojak fumando) - MÁS GRANDE */
+        /* Cuadro cuadrado (GIF marciano) - QUITAR EL BORDE Y BAJAR UN POCO */
         .wojak-box {
-            width: 130px; /* Aumentado */
-            height: 130px; /* Aumentado */
+            width: 130px;
+            height: 130px;
             background-image: url('https://i.imgur.com/9O2byVE.png');
-            background-size: cover; /* Cambiado para llenar el cuadro */
+            background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
             margin-right: 20px;
-            border: 2px solid white;
-            box-shadow: 0 0 10px white;
+            border: none; /* Borde quitado como me pediste */
+            box-shadow: none; /* Sombra quitada */
+            transform: translateY(10px); /* Bajado un poco */
         }
 
         .circular-gif {
@@ -172,6 +173,25 @@
         h2 { text-align:center; letter-spacing:4px; }
         hr { border: 0; border-top: 1px solid white; opacity: 0.5; margin: 20px 0; }
         .footer-text { text-align: center; opacity: 0.5; font-size: 0.7rem; }
+
+        /* NUEVO CUADRO INFERIOR (Tortuga con Brillo Lento B/N y Blur) */
+        .glow-image-box {
+            width: 320px;
+            height: 200px;
+            background-image: url('https://i.imgur.com/qmSLTkk.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 2px solid;
+            margin-top: 20px;
+            animation: borderGlowSlow 2s linear infinite;
+        }
+
+        @keyframes borderGlowSlow {
+            0% { border-color: #000; box-shadow: 0 0 10px #000, 0 0 2px 1px #000; }
+            50% { border-color: #fff; box-shadow: 0 0 20px #fff, 0 0 4px 2px #fff; }
+            100% { border-color: #000; box-shadow: 0 0 10px #000, 0 0 2px 1px #000; }
+        }
     </style>
 </head>
 <body onclick="startMusic()">
@@ -216,6 +236,8 @@
             </div>
             <hr>
             <p class="footer-text">Shitty Script By @Keto</p>
+            
+            <div class="glow-image-box"></div>
         </div>
     </div>
 
@@ -230,4 +252,3 @@
     </script>
 </body>
 </html>
-
