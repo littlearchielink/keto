@@ -119,4 +119,81 @@
         .text-block {
             font-size: 1rem;
             line-height: 1.8;
-            color: #ffffff; /* Texto blanco
+            color: #ffffff; /* Texto blanco puro */
+            margin-bottom: 25px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4); /* Brillo sutil en las letras */
+        }
+
+        .info-panel h2 {
+            color: white;
+            text-align: center;
+            letter-spacing: 4px;
+            text-shadow: 0 0 12px white;
+            margin-bottom: 20px;
+        }
+
+        .separator {
+            border-bottom: 1px solid white;
+            margin: 10px 0 25px 0;
+            opacity: 0.6;
+            box-shadow: 0 0 10px white;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .telegram-user {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            opacity: 0.5;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="buttons-panel">
+        <h1>KETO ALL ACCOUNTS</h1>
+        <a href="https://www.tiktok.com/@shakalaketo" class="btn">TIKTOK</a>
+        <a href="https://www.roblox.com/es/users/4693048699/profile" class="btn">ROBLOX</a>
+        <a href="https://steamcommunity.com/profiles/76561198790173153/" class="btn">STEAM</a>
+        <a href="https://discord.gg/dRsakfqN" class="btn">DISCORD</a>
+        <a href="https://t.me/Ketoand" class="btn">TELEGRAM</a>
+    </div>
+
+    <div class="right-container">
+        <div class="circular-gif-outer">
+            <img src="https://i.imgur.com/ddeOAqB.gif" alt="gif">
+        </div>
+
+        <div class="info-panel">
+            <h2>INFO_PERFIL :: KETO</h2>
+            <div class="separator"></div>
+
+            <div class="text-block">
+                Hola mi nombre es Christian de 14 años, Vivo en Venezuela estado Cumaná , me encanta jugar videojuegos, leer, escribir, dibujar, programar, editar algunos videos cuando me da la gana XD.
+            </div>
+            
+            <div class="text-block">
+                La verdad no soy de esos que comparten fotos de su rostro asi no mas porque la verdad para conocerte tendria que llevarme muy bien de confianza.
+            </div>
+
+            <div class="text-block">
+                Si quieres conocerme pues aqui estan algunas de mis redes.
+            </div>
+            
+            <div class="separator"></div>
+            <div style="text-align: center; color: white; opacity: 0.4; font-size: 0.7rem; letter-spacing: 2px;">ONLINE // v1.2</div>
+        </div>
+    </div>
+
+    <p class="telegram-user">@Ketoand</p>
+
+</body>
+</html>
