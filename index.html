@@ -3,44 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ketoand Startpage v3.1 - Fixed Final</title>
+    <title>Ketoand Startpage v4.0</title>
     <style>
-        /* --- ESTILO DE LA PANTALLA DE BIENVENIDA --- */
+        /* --- PANTALLA DE BIENVENIDA --- */
         #welcome-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Usamos la imagen completa como fondo */
+            top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('https://i.imgur.com/UWytxH4.png');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            background-color: #000; /* Fondo base negro */
-            display: flex;
-            justify-content: center;
-            align-items: center;
             z-index: 1000;
-            /* La animación de volverse transparente poco a poco */
             transition: opacity 1.5s ease, visibility 1.5s ease;
             cursor: url('https://i.imgur.com/7CddGWN.png'), auto;
         }
 
-        /* El área "invisible" sobre la tortuga que activa la entrada */
         #tortuga-click-area {
             position: absolute;
-            width: 350px; /* Tamaño aproximado de la tortuga en la imagen */
-            height: 250px;
-            top: 50%; /* Centrado vertical */
-            left: 50%; /* Centrado horizontal */
-            transform: translate(-50%, -50%); /* Ajuste de centrado */
+            width: 250px; height: 200px;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
             cursor: url('https://i.imgur.com/7CddGWN.png'), pointer;
-            border-radius: 50%; /* Opcional: forma para que encaje mejor */
-            /* border: 2px solid red; Opcional: para ver el área durante la prueba */
         }
 
-        /* --- ESTILO GENERAL DE LA PÁGINA (Ketoand Site) --- */
+        /* --- ESTILO GENERAL --- */
         body {
             background-image: url('https://i.imgur.com/MkEjw6u.gif');
             background-size: cover;
@@ -49,244 +34,148 @@
             background-color: #000;
             margin: 0;
             font-family: 'Courier New', Courier, monospace;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column; /* Cambiado para mejor control móvil */
+            align-items: center;
+            justify-content: center;
             cursor: url('https://i.imgur.com/7CddGWN.png'), auto;
+            overflow-x: hidden;
         }
 
+        /* Capa oscura sobre el fondo */
         body::before {
             content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 0;
-        }
-
-        .glow-line {
             position: fixed;
-            background: white;
-            box-shadow: 0 0 15px white, 0 0 30px white;
-            z-index: 10;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
         }
-        .top { top: 5px; left: 5%; right: 5%; height: 2px; }
-        .bottom { bottom: 5px; left: 5%; right: 5%; height: 2px; }
-        .left { left: 5px; top: 5%; bottom: 5%; width: 2px; }
-        .right { right: 10px; top: 10%; bottom: 10%; width: 2px; }
 
-        /* --- PANEL IZQUIERDO --- */
-        .left-side {
+        /* CONTENEDOR PRINCIPAL FLEXIBLE */
+        .main-container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 0;
+            z-index: 1;
+        }
+
+        /* --- PANELES --- */
+        .left-side, .right-container {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 1;
-            margin-left: 80px;
         }
 
-        .friendly-image-box {
-            width: 320px;
-            height: 200px;
-            background-image: url('https://i.imgur.com/ddeOAqB.gif');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
+        /* Imágenes y cajas */
+        .friendly-image-box, .sad-mickey-box, .glow-image-box {
+            width: 100%;
+            max-width: 320px;
+            height: 180px;
             border: 2px solid white;
-            box-shadow: 0 0 10px white;
-            margin-bottom: 20px;
+            margin: 15px 0;
+            background-size: cover;
+            background-position: center;
         }
 
-        .buttons-panel {
-            text-align: center;
-            width: 300px;
-        }
+        .buttons-panel { width: 100%; max-width: 300px; text-align: center; }
 
         .btn {
             display: block;
             background: rgba(0, 0, 0, 0.8);
-            border: 2px solid #ffffff;
+            border: 2px solid white;
             color: white;
-            padding: 12px;
+            padding: 10px;
             margin: 8px 0;
             text-decoration: none;
             font-weight: bold;
-            text-transform: uppercase;
             transition: 0.3s;
-            font-size: 0.9rem;
             cursor: url('https://i.imgur.com/7CddGWN.png'), pointer;
         }
 
-        .tiktok:hover { border-color: #ff0050; box-shadow: 0 0 20px #ff0050; color: #ff0050; }
-        .roblox:hover { border-color: #00A2FF; box-shadow: 0 0 20px #00A2FF; color: #00A2FF; }
-        .steam:hover { border-color: #66c0f4; box-shadow: 0 0 20px #66c0f4; color: #66c0f4; }
-        .discord:hover { border-color: #5865F2; box-shadow: 0 0 20px #5865F2; color: #5865F2; }
-        .telegram:hover { border-color: #0088cc; box-shadow: 0 0 20px #0088cc; color: #0088cc; }
-        .reddit:hover { border-color: #FF4500; box-shadow: 0 0 20px #FF4500; color: #FF4500; }
-        .c-ai:hover { border-color: #a1a1a1; box-shadow: 0 0 20px #ffffff; color: #ffffff; }
-
-        .sad-mickey-box {
-            width: 320px;
-            height: 200px;
-            background-image: url('https://i.imgur.com/wgiRIai.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            border: 2px solid;
-            margin-top: 20px;
-            animation: borderGlow 0.3s linear infinite;
-        }
-
-        @keyframes borderGlow {
-            0% { border-color: #000; box-shadow: 0 0 10px #000; }
-            50% { border-color: #fff; box-shadow: 0 0 20px #fff; }
-            100% { border-color: #000; box-shadow: 0 0 10px #000; }
-        }
-
-        /* --- PANEL DERECHO --- */
-        .right-container {
-            z-index: 1;
-            margin-right: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        .top-right-images {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .wojak-box {
-            width: 130px;
-            height: 130px;
-            background-image: url('https://i.imgur.com/9O2byVE.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            margin-right: 20px;
-            border: none;
-            transform: translateY(10px);
-        }
-
-        .circular-gif {
-            width: 110px;
-            height: 110px;
-            border: 2px solid white;
-            border-radius: 50%;
-            background-image: url('https://i.imgur.com/ddeOAqB.gif');
-            background-size: cover;
-            box-shadow: 0 0 15px white;
-        }
+        .btn:hover { background: white; color: black; box-shadow: 0 0 15px white; }
 
         .info-panel {
-            background-color: rgba(0, 0, 0, 0.9);
-            border: 2px solid #ffffff;
-            padding: 35px;
-            width: 480px;
-            height: 75vh;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            overflow-y: auto;
-            position: relative;
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid white;
+            padding: 25px;
+            width: 100%;
+            max-width: 450px;
+            backdrop-filter: blur(5px);
         }
 
-        .text-block {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: #fff;
+        /* --- DISEÑO PARA MÓVILES (ADAPTACIÓN) --- */
+        @media (max-width: 850px) {
+            .main-container {
+                flex-direction: column; /* Pone un panel debajo del otro */
+                padding: 20px 0;
+            }
+            
+            .info-panel {
+                max-width: 90%; /* Ajusta el ancho al móvil */
+            }
+
+            .left-side {
+                order: 2; /* Opcional: Poner la info arriba y redes abajo */
+            }
         }
 
-        h2 { text-align:center; letter-spacing:4px; }
-        hr { border: 0; border-top: 1px solid white; opacity: 0.5; margin: 20px 0; }
-        .footer-text { text-align: center; opacity: 0.5; font-size: 0.7rem; }
-
-        .glow-image-box {
-            width: 320px;
-            height: 200px;
-            background-image: url('https://i.imgur.com/qmSLTkk.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            border: 2px solid;
-            margin-top: 20px;
-            animation: borderGlowSlow 2s linear infinite;
-        }
-
-        @keyframes borderGlowSlow {
-            0% { border-color: #000; box-shadow: 0 0 10px #000, 0 0 2px 1px #000; }
-            50% { border-color: #fff; box-shadow: 0 0 20px #fff, 0 0 4px 2px #fff; }
-            100% { border-color: #000; box-shadow: 0 0 10px #000, 0 0 2px 1px #000; }
-        }
+        /* Líneas brillantes */
+        .glow-line { position: fixed; background: white; box-shadow: 0 0 10px white; z-index: 10; }
+        .top { top: 5px; left: 5%; right: 5%; height: 2px; }
+        .bottom { bottom: 5px; left: 5%; right: 5%; height: 2px; }
     </style>
 </head>
 <body>
-
-    <div class="glow-line top"></div>
-    <div class="glow-line bottom"></div>
-    <div class="glow-line left"></div>
-    <div class="glow-line right"></div>
-
-    <audio id="bg-music" loop>
-        <source src="musica.mp3.mp3" type="audio/mpeg">
-    </audio>
 
     <div id="welcome-overlay">
         <div id="tortuga-click-area" onclick="revealSite()"></div>
     </div>
 
-    <div class="left-side">
-        <div class="friendly-image-box"></div>
-        <div class="buttons-panel">
-            <h1 style="font-size: 1rem; letter-spacing: 5px;">KETO ALL ACCOUNTS</h1>
-            <a href="https://www.tiktok.com/@shakalaketo" class="btn tiktok">TIKTOK</a>
-            <a href="https://www.roblox.com/es/users/4693048699/profile" class="btn roblox">ROBLOX</a>
-            <a href="https://steamcommunity.com/profiles/76561198790173153/" class="btn steam">STEAM</a>
-            <a href="https://discord.gg/dRsakfqN" class="btn discord">DISCORD</a>
-            <a href="https://t.me/Ketoand" class="btn telegram">TELEGRAM</a>
-            <a href="TU_LINK_DE_REDDIT_AQUI" class="btn reddit">REDDIT</a>
-            <a href="https://character.ai/profile/Chud_Critico" class="btn c-ai">CHARACTER.AI</a>
+    <div class="glow-line top"></div>
+    <div class="glow-line bottom"></div>
+
+    <div class="main-container">
+        <div class="left-side">
+            <div class="friendly-image-box" style="background-image: url('https://i.imgur.com/ddeOAqB.gif');"></div>
+            <div class="buttons-panel">
+                <h2 style="font-size: 1.2rem; letter-spacing: 3px;">KETO LINKS</h2>
+                <a href="https://www.tiktok.com/@shakalaketo" class="btn">TIKTOK</a>
+                <a href="https://www.roblox.com/es/users/4693048699/profile" class="btn">ROBLOX</a>
+                <a href="https://discord.gg/dRsakfqN" class="btn">DISCORD</a>
+                <a href="https://t.me/Ketoand" class="btn">TELEGRAM</a>
+            </div>
+            <div class="sad-mickey-box" style="background-image: url('https://i.imgur.com/wgiRIai.png');"></div>
         </div>
-        <div class="sad-mickey-box"></div>
+
+        <div class="right-container">
+            <div class="info-panel">
+                <h2 style="text-align: center;">INFO :: KETO</h2>
+                <hr>
+                <p>Hola, mi nombre es Christian. Tengo 14 años y vivo en Venezuela. Me gusta programar, jugar videojuegos y editar videos.</p>
+                <hr>
+                <div class="glow-image-box" style="background-image: url('https://i.imgur.com/qmSLTkk.png');"></div>
+            </div>
+        </div>
     </div>
 
-    <div class="right-container">
-        <div class="top-right-images">
-            <div class="wojak-box"></div>
-            <div class="circular-gif"></div>
-        </div>
-        <div class="info-panel">
-            <h2>INFO_PERFIL :: KETO</h2>
-            <hr>
-            <div class="text-block">
-                Hola mi nombre es Christian de 14 años, Vivo en Venezuela estado Cumaná , me encanta jugar videojuegos, leer, escribir, dibujar, programar, editar algunos videos cuando me da la gana XD, la verdad no soy de esos que comparten fotos de su rostro asi no mas porque la verdad para conocerte tendria que llevarme muy bien de confianza, si quieres conocerme pues aqui estan algunas de mis redes.
-            </div>
-            <hr>
-            <p class="footer-text">ONLINE // v1.2</p>
-            <div class="glow-image-box"></div>
-        </div>
-    </div>
+    <audio id="bg-music" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         function revealSite() {
             var overlay = document.getElementById("welcome-overlay");
             var audio = document.getElementById("bg-music");
-            
-            // 1. Iniciar música (el clic salta el bloqueo del navegador)
-            audio.play().catch(function(error) {
-                console.log("Música activada.");
-            });
-
-            // 2. Hacer la pantalla de bienvenida transparente
+            audio.play().catch(e => console.log("Audio ready"));
             overlay.style.opacity = "0";
-            overlay.style.visibility = "hidden"; // Quitar visibilidad para que no bloquee clics
-            
-            // 3. Quitarlo del todo después de que termine la animación de 1.5s
-            setTimeout(function() {
-                overlay.style.display = "none";
-            }, 1500);
+            setTimeout(() => { overlay.style.display = "none"; }, 1500);
         }
     </script>
 </body>
